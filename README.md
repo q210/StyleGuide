@@ -51,6 +51,7 @@ This style guide conforms to IETF's [RFC 2119](http://tools.ietf.org/html/rfc211
 * [Protocols](#protocols)
 * [Golden Path](#golden-path)
 * [Xcode Project](#xcode-project)
+* [Commit messages](#commit-messages)
 * [Boyscout](#boyscout)
 
 
@@ -922,6 +923,34 @@ When coding with conditionals, the left hand margin of the code should be the "g
 The physical files SHOULD be kept in sync with the Xcode project files in order to avoid file sprawl. Any Xcode groups created SHOULD be reflected by folders in the filesystem. Code SHOULD be grouped not only by type, but also by feature for greater clarity.
 
 Target Build Setting “Treat Warnings as Errors” SHOULD be enabled. Enable as many [additional warnings](http://boredzo.org/blog/archives/2009-11-07/warnings) as possible. If you need to ignore a specific warning, use [Clang’s pragma feature](http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas).
+
+## Commit messages
+
+A properly formed Git commit subject line MUST be able to complete the following sentence:
+
+(If applied, this commit will) \<your subject line here\>
+
+**For example:**
+```
+(If applied, this commit will) refactor subsystem X for readability
+(If applied, this commit will) update getting started documentation
+(If applied, this commit will) remove deprecated methods
+(If applied, this commit will) release version 1.0.0
+(If applied, this commit will) merge pull request #123 from user/branch
+```
+
+Notice how this doesn't work for the other non-imperative forms:
+
+**Not:**
+```
+(If applied, this commit will) fixed bug with Y
+(If applied, this commit will) changing behavior of X
+(If applied, this commit will) more fixes for broken stuff
+(If applied, this commit will) sweet new API methods
+```
+
+More on writing commit messages: http://chris.beams.io/posts/git-commit/
+
 
 ## Boyscout
 Whenever you are in a piece of code it should be left cleaner than when you found it if possible. If you find code that violates this guide, correct it. If the code is out dated then update it.
