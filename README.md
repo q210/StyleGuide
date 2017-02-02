@@ -5,6 +5,7 @@ This was derived from other great guides:
 
 * [NYTimes Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide/blob/master/README.md)
 * [GitHub Objective-C Style Guide](https://github.com/github/objective-c-style-guide)
+* [Structuring Modern Objective-C](https://ashfurrow.com/blog/structuring-modern-objective-c/)
 
 ## Introduction
 
@@ -827,10 +828,30 @@ This will prevent [possible and sometimes frequent crashes](http://cocoasamurai.
 
 ## Imports
 
-If there is more than one import statement, statements MUST be grouped [together](http://ashfurrow.com/blog/structuring-modern-objective-c). Groups MAY be commented.
+* `#import` statements SHOULD NOT be written in header files, and SHOULD be used only in implementation files. Use forward class declarations instead. Forward class declarations in lieu of #importing headers will lead to faster compile times, will avoid circular #import statements, and will keep your headers lightweight, the way they were meant to be.
+The one real exception is when subclassing another custom class, you’ll need to #import its header. 
+
+**For example:**
+```objc
+// MyClass.h
+
+@class MyOtherClass;
+
+@interface MyClass : NSObject
+
+@property (nonatomic, strong) MyOtherClass property;
+
+@end
+
+// MyClass.m
+#import "MyOtherClass.h"
+```
+
+* If there is more than one import statement, statements MUST be grouped [together](http://ashfurrow.com/blog/structuring-modern-objective-c). Groups MAY be commented.
 
 Note: For modules use the [@import](http://clang.llvm.org/docs/Modules.html#using-modules) syntax.
 
+**For example:**
 ```objc
 // Frameworks
 @import QuartzCore;
@@ -841,6 +862,15 @@ Note: For modules use the [@import](http://clang.llvm.org/docs/Modules.html#usin
 // Views
 #import "NYTButton.h"
 #import "NYTUserView.h"
+```
+
+* Precompiled header (.pch) file SHOULD be used to avoid standard imports. All imports written there will be added to all your headers automatically by XCode
+
+**For example:**
+```objc
+// AppName-Prefix.pch
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 ```
 
 ## Protocols
