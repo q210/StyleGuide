@@ -140,6 +140,7 @@ if (user.isHappy) {
 ```
 
 * There SHOULD be exactly one blank line between methods to aid in visual clarity and organization.
+* Lines SHOULD be no longer than 120 symbols to allow comfortable work in two side-by-side editor windows in XCode. 
 * Whitespace within methods MAY separate functionality, though this inclination often indicates an opportunity to split the method into several, smaller methods. In methods with long or verbose names, a single line of whitespace MAY be used to provide visual separation before the method’s body.
 * `@synthesize` and `@dynamic` MUST each be declared on new lines in the implementation.
 
