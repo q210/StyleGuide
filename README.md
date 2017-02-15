@@ -89,9 +89,11 @@ This style guide conforms to IETF's [RFC 2119](http://tools.ietf.org/html/rfc211
 - (void)privateMethod {}
 
 #pragma mark - Protocol conformance
-#pragma mark - UITextFieldDelegate
-#pragma mark - UITableViewDataSource
-#pragma mark - UITableViewDelegate
+// protocol conformance will be shown in XCode file popover as a block with dividers 
+// and concrete protocol names will be inside as labels
+#pragma mark UITextFieldDelegate
+#pragma mark UITableViewDataSource
+#pragma mark UITableViewDelegate
 
 #pragma mark - NSCopying
 
